@@ -1,6 +1,8 @@
 ---
 title: "Paper 33 Reproducibility Report"
 output: html_document
+author: Ben Bond-Lamberty
+date: "`r format(Sys.time(), '%d %B %Y')`"
 ---
 
 ```{r setup, include=FALSE}
@@ -11,47 +13,38 @@ Guidelines: https://github.com/ReScience/ten-years/blob/master/author-guidelines
 
 What to put inside the RR: https://github.com/ReScience/ten-years/issues/4
 
-## Article
-
-Please address the following topics to the extent that they make sense for your particular case.
-
 ### Historical context
 
 _Summarize the scientific question that your code was written to explore._
 
-Summarize.
+Significant changes in forest fires have occurred in recent decades in the global boreal (high latitude) forest, but the effects of changing climate and disturbance on evapotranspiration (ET) and forest water cycling more generally are not well understood. In a [previous study](https://dx.doi.org/10.1038/nature06272) we had explored the ecological and carbon-cycle consequences of changes in the fire regime using an ecosystem model run at high resolution across a large (1000 km x 1000 km) area of the central Canadian boreal forest. In a subsequent paper, we used the same model outputs to examine the _hydrological_ implications of these wildfire regime shifts.
 
 _Describe the computational context: Which hardware was used to run the code? Which software infrastructure? Which constraints existed on software development? Which technical choices (language, libraries, ...) were made? Were reproducibility and/or re-usability important criteria?_
-
-Describe.
-
 _About the original source code: Was it published? Was it archived somewhere? Was there a license for it?_
 
-The article manuscript was written and submitted in April 2008, and a final, revised version in October of that year. The methods paper of the [published paper](https://dx.doi.org/10.1111/j.1365-2486.2008.01776.x) says that R 2.6.0 was used for analyses, which was released on 2007-10-03. The source code was not publicly archived, but retained in the lead author's personal records; it had no license.
+The article manuscript was written in 2007-2008, initially submitted in April 2008, and a final, revised version was submitted in October of that year. The methods section of the [published paper](https://dx.doi.org/10.1111/j.1365-2486.2008.01776.x) says that R 2.6.0, which was released on 2007-10-03, was used for all analyses. The source code was not publicly archived, but retained in the lead author's personal records; it has no license. The original hardware would have been an Apple laptop (probably a 2006-2007 MacBook Pro).
 
 ### Retrieval of the software
 
-- Was it easy to find a copy of your source code?
-- Was it easy to locate and setup the dependencies?
-- Provide a list of all dependencies (libraries but also tools such as compilers).
+The source code being reproduced here is short and was written to analyze relationships between various potential driving factors and three output variables of interest: ET, canopy evaporation, and canopy transpiration, all annual flux totals over the 1948-2005 model run period. The code simply reads in a comma-separated data file holding the modeling outputs, prints a summary of the data, and then fits and prints 12 separate regressions (three output variables times four possible independent variables). As noted above, the code file was archived by the lead author, and so was easy for him (but no one else) to find.
 
 ### Execution
 
-Describe what you did in order to run the software today.
+_Describe what you did in order to run the software today._
 
-- Did you succeed in running the software in a modern computational environment? Or did you have to search for old versions of tools and libraries?
-- Describe the computational environment of the reproduction: hardware, operating system, compiler versions etc.
-- Did you have to modify the software in order to make it run today?
-- Were the original instructions that came with the software sufficient, or did you have to modify or extend them?
-- How close were the results you got to the originally published ones? Include the
-  replicated data table and figure, as we do in other ReScience articles.
+Because the code uses only base R functions, it has no dependencies other than a standard R installation. Both in 2007-2008 and 2020, the default Mac R installer provided by CRAN was used to install R (i.e. it was not built from source). The code was re-run on a 2018 MacBook Pro under R version 3.6.1 (2019-07-05); platform: x86_64-apple-darwin15.6.0 (64-bit); running under macOS Mojave 10.14.6.
 
-If you had to make any modifications to the software or to the instructions that were supplied with it, try to describe which competence another researcher would need in order to do the same work. Would a general familiarity with your programming language and environment have been sufficient?
+Although there were no instructions or comments in the code, it needed no modification to run today.
+
+_How close were the results you got to the originally published ones? Include the_
+_replicated data table and figure, as we do in other ReScience articles._
+
 
 ### Conclusions
 
 _In addition to the content covered below, we are interested in the insight resulting from the reproducibility experience in relation to the choice of technology, and in your opinion on the original source code (clarity, documentation, etc)._
 
+Stability of R over last 10 years; contrast with...
 
 ## Software
 
