@@ -46,6 +46,9 @@ _In addition to the content covered below, we are interested in the insight resu
 
 Stability of R over last 10 years; contrast with...
 
+I didn't save hardware information, and only recorded the R version number in the manuscript. BUT I SAVED THE OUTPUT FROM THE SCRIPT and that made reproducibility possible!
+
+
 ## Software
 
 If the licenses applying to the original software allow, please make your old software
