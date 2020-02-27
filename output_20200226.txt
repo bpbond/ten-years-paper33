@@ -1,3 +1,4 @@
+> source("ET.r", echo=TRUE)
 
 > # ET.r
 > 
