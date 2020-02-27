@@ -1,0 +1,298 @@
+
+> # ET.r
+> 
+> et <- read.csv("ET.csv", header=TRUE)
+
+> summary(et)
+      Year            ET               EC               ER                ES        
+ Min.   :1948   Min.   :0.6303   Min.   :0.3178   Min.   :0.07431   Min.   :0.2083  
+ 1st Qu.:1962   1st Qu.:0.8291   1st Qu.:0.3626   1st Qu.:0.10703   1st Qu.:0.3477  
+ Median :1976   Median :0.8947   Median :0.3876   Median :0.12132   Median :0.3835  
+ Mean   :1976   Mean   :0.8855   Mean   :0.3838   Mean   :0.11976   Mean   :0.3819  
+ 3rd Qu.:1991   3rd Qu.:0.9376   3rd Qu.:0.4066   3rd Qu.:0.13211   3rd Qu.:0.4110  
+ Max.   :2005   Max.   :1.0728   Max.   :0.4408   Max.   :0.15371   Max.   :0.5073  
+                                                                                    
+      Tavg             Precip            NPP              Fire   
+ Min.   :-1.5607   Min.   :0.1387   Min.   : 96.0           : 2  
+ 1st Qu.:-0.3613   1st Qu.:0.1689   1st Qu.:197.5   1,088.06: 1  
+ Median : 0.4224   Median :0.1799   Median :206.8   1,104.89: 1  
+ Mean   : 0.3489   Mean   :0.1837   Mean   :204.2   1,106.19: 1  
+ 3rd Qu.: 0.8426   3rd Qu.:0.1939   3rd Qu.:214.1   1,133.04: 1  
+ Max.   : 2.6432   Max.   :0.2576   Max.   :234.6   1,352.69: 1  
+                                                    (Other) :51  
+
+> er1 <- lm(ER ~ Tavg, data=et)
+
+> summary(er1)
+
+Call:
+lm(formula = ER ~ Tavg, data = et)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.040461 -0.007620  0.002712  0.012330  0.032583 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 0.117488   0.002168  54.185   <2e-16 ***
+Tavg        0.006504   0.002191   2.969   0.0044 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.01545 on 56 degrees of freedom
+Multiple R-squared:  0.136,	Adjusted R-squared:  0.1205 
+F-statistic: 8.812 on 1 and 56 DF,  p-value: 0.004397
+
+
+> er2 <- lm(ER ~ Precip, data=et)
+
+> summary(er2)
+
+Call:
+lm(formula = ER ~ Precip, data = et)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.028858 -0.009186  0.002089  0.010753  0.019997 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.03135    0.01284   2.442   0.0178 *  
+Precip       0.48122    0.06933   6.941 4.33e-09 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.01219 on 56 degrees of freedom
+Multiple R-squared:  0.4624,	Adjusted R-squared:  0.4528 
+F-statistic: 48.18 on 1 and 56 DF,  p-value: 4.334e-09
+
+
+> er3 <- lm(ER ~ NPP, data=et)
+
+> summary(er3)
+
+Call:
+lm(formula = ER ~ NPP, data = et)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.038111 -0.011882  0.001293  0.009821  0.038898 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)   
+(Intercept) 0.0546197  0.0226197   2.415  0.01904 * 
+NPP         0.0003190  0.0001103   2.891  0.00545 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.01551 on 56 degrees of freedom
+Multiple R-squared:  0.1299,	Adjusted R-squared:  0.1144 
+F-statistic:  8.36 on 1 and 56 DF,  p-value: 0.005451
+
+
+> es1 <- lm(ES ~ Tavg, data=et)
+
+> summary(es1)
+
+Call:
+lm(formula = ES ~ Tavg, data = et)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.150662 -0.027744  0.007228  0.028778  0.119383 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 0.376775   0.007963  47.316   <2e-16 ***
+Tavg        0.014615   0.008046   1.817   0.0746 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.05675 on 56 degrees of freedom
+Multiple R-squared:  0.05564,	Adjusted R-squared:  0.03878 
+F-statistic:   3.3 on 1 and 56 DF,  p-value: 0.07465
+
+
+> es2 <- lm(ES ~ Precip, data=et)
+
+> summary(es2)
+
+Call:
+lm(formula = ES ~ Precip, data = et)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.16736 -0.03607  0.01207  0.02953  0.12979 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.25584    0.05912   4.328 6.28e-05 ***
+Precip       0.68607    0.31929   2.149    0.036 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.05613 on 56 degrees of freedom
+Multiple R-squared:  0.07617,	Adjusted R-squared:  0.05967 
+F-statistic: 4.617 on 1 and 56 DF,  p-value: 0.03599
+
+
+> es3 <- lm(ES ~ NPP, data=et)
+
+> summary(es3)
+
+Call:
+lm(formula = ES ~ NPP, data = et)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.172573 -0.033703  0.001087  0.028907  0.125322 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 3.662e-01  8.516e-02   4.300  6.9e-05 ***
+NPP         7.684e-05  4.153e-04   0.185    0.854    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.05838 on 56 degrees of freedom
+Multiple R-squared:  0.0006108,	Adjusted R-squared:  -0.01724 
+F-statistic: 0.03423 on 1 and 56 DF,  p-value: 0.8539
+
+
+> ec1 <- lm(EC ~ Tavg, data=et)
+
+> summary(ec1)
+
+Call:
+lm(formula = EC ~ Tavg, data = et)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.057046 -0.018822  0.003249  0.021387  0.048242 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 0.379511   0.004037  94.000  < 2e-16 ***
+Tavg        0.012419   0.004079   3.044  0.00355 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.02877 on 56 degrees of freedom
+Multiple R-squared:  0.142,	Adjusted R-squared:  0.1267 
+F-statistic: 9.268 on 1 and 56 DF,  p-value: 0.00355
+
+
+> ec2 <- lm(EC ~ Precip, data=et)
+
+> summary(ec2)
+
+Call:
+lm(formula = EC ~ Precip, data = et)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.068583 -0.020279  0.001478  0.024611  0.054963 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.43478    0.03199  13.592   <2e-16 ***
+Precip      -0.27727    0.17277  -1.605    0.114    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.03037 on 56 degrees of freedom
+Multiple R-squared:  0.04397,	Adjusted R-squared:  0.0269 
+F-statistic: 2.576 on 1 and 56 DF,  p-value: 0.1142
+
+
+> ec3 <- lm(EC ~ NPP, data=et)
+
+> summary(ec3)
+
+Call:
+lm(formula = EC ~ NPP, data = et)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.060456 -0.022361  0.005492  0.017973  0.077334 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 0.2191292  0.0395563   5.540 8.42e-07 ***
+NPP         0.0008066  0.0001929   4.181 0.000103 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.02712 on 56 degrees of freedom
+Multiple R-squared:  0.2379,	Adjusted R-squared:  0.2243 
+F-statistic: 17.48 on 1 and 56 DF,  p-value: 0.000103
+
+
+> et1 <- lm(ET ~ Tavg, data=et)
+
+> summary(et1)
+
+Call:
+lm(formula = ET ~ Tavg, data = et)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.20254 -0.04154  0.01055  0.04258  0.16895 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.87377    0.01058  82.603  < 2e-16 ***
+Tavg         0.03354    0.01069   3.138  0.00271 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.07539 on 56 degrees of freedom
+Multiple R-squared:  0.1495,	Adjusted R-squared:  0.1343 
+F-statistic: 9.846 on 1 and 56 DF,  p-value: 0.002714
+
+
+> et2 <- lm(ET ~ Precip, data=et)
+
+> summary(et2)
+
+Call:
+lm(formula = ET ~ Precip, data = et)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.24708 -0.05262  0.01287  0.04675  0.17605 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.72197    0.08323   8.674 6.09e-12 ***
+Precip       0.89002    0.44954   1.980   0.0526 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.07903 on 56 degrees of freedom
+Multiple R-squared:  0.06542,	Adjusted R-squared:  0.04873 
+F-statistic:  3.92 on 1 and 56 DF,  p-value: 0.05264
+
+
+> et3 <- lm(ET ~ NPP, data=et)
+
+> summary(et3)
+
+Call:
+lm(formula = ET ~ NPP, data = et)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.239058 -0.050885  0.003688  0.049445  0.208440 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 0.6399326  0.1146015   5.584 7.15e-07 ***
+NPP         0.0012024  0.0005589   2.151   0.0358 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.07857 on 56 degrees of freedom
+Multiple R-squared:  0.07634,	Adjusted R-squared:  0.05984 
+F-statistic: 4.628 on 1 and 56 DF,  p-value: 0.03578
+
