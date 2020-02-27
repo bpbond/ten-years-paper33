@@ -36,4 +36,4 @@ vignettes/*.pdf
 *.knit.md
 
 # R markdown outputs
-*.html
+#*.html

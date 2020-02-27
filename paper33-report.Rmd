@@ -1,5 +1,5 @@
 ---
-title: "Paper 33 Reproducibility Report"
+title: "Paper 33 Reproducibility Report: 12 Years Later..."
 output: html_document
 author: Ben Bond-Lamberty
 date: "`r format(Sys.time(), '%d %B %Y')`"
@@ -22,31 +22,42 @@ Significant changes in forest fires have occurred in recent decades in the globa
 _Describe the computational context: Which hardware was used to run the code? Which software infrastructure? Which constraints existed on software development? Which technical choices (language, libraries, ...) were made? Were reproducibility and/or re-usability important criteria?_
 _About the original source code: Was it published? Was it archived somewhere? Was there a license for it?_
 
-The article manuscript was written in 2007-2008, initially submitted in April 2008, and a final, revised version was submitted in October of that year. The methods section of the [published paper](https://dx.doi.org/10.1111/j.1365-2486.2008.01776.x) says that R 2.6.0, which was released on 2007-10-03, was used for all analyses. The source code was not publicly archived, but retained in the lead author's personal records; it has no license. The original hardware would have been an Apple laptop (probably a 2006-2007 MacBook Pro).
+The article manuscript was written in 2007-2008, initially submitted in April 2008, and a final, revised version was submitted in October of that year. The system timestamp on the script output file is 2008-03-16. The methods section of the [published paper](https://dx.doi.org/10.1111/j.1365-2486.2008.01776.x) says that R 2.6.0, which was released on 2007-10-03, was used for all analyses. The source code was not publicly archived, but retained in the lead author's personal records; it has no license. The original hardware would have been an Apple laptop (probably a 2006-2007 MacBook Pro). As noted above, the code file was archived by the lead author, and so was easy for him (but no one else) to find. The code has no comments or instructions.
 
 ### Retrieval of the software
 
-The source code being reproduced here is short and was written to analyze relationships between various potential driving factors and three output variables of interest: ET, canopy evaporation, and canopy transpiration, all annual flux totals over the 1948-2005 model run period. The code simply reads in a comma-separated data file holding the modeling outputs, prints a summary of the data, and then fits and prints 12 separate regressions (three output variables times four possible independent variables). As noted above, the code file was archived by the lead author, and so was easy for him (but no one else) to find.
+The source code being reproduced here is short and was written to analyze relationships between various potential driving factors and three output variables of interest: ET, canopy evaporation, and canopy transpiration, all annual flux totals over the 1948-2005 model run period. The code simply reads in a comma-separated data file holding the modeling outputs, prints a summary of the data, and then fits and prints 12 separate regressions (three output variables times four possible independent variables). These fit statistics were reported on p. 1247 of the published article.
 
 ### Execution
 
 _Describe what you did in order to run the software today._
 
-Because the code uses only base R functions, it has no dependencies other than a standard R installation. Both in 2007-2008 and 2020, the default Mac R installer provided by CRAN was used to install R (i.e. it was not built from source). The code was re-run on a 2018 MacBook Pro under R version 3.6.1 (2019-07-05); platform: x86_64-apple-darwin15.6.0 (64-bit); running under macOS Mojave 10.14.6.
-
-Although there were no instructions or comments in the code, it needed no modification to run today.
+Because the code uses only base R functions, it has no dependencies other than a standard R installation. Both in 2007-2008 and 2020, the default Mac R installer provided by CRAN was used to install R (i.e. it was not built from source). The code was re-run, without modification, on a 2018 MacBook Pro under R version 3.6.1 (2019-07-05); platform: x86_64-apple-darwin15.6.0 (64-bit); running under macOS Mojave 10.14.6.
 
 _How close were the results you got to the originally published ones? Include the_
 _replicated data table and figure, as we do in other ReScience articles._
 
+Setting aside minor spacing and text capitalization changes, only one numerical change occurred, albeit in the sixth decimal place. In the 2008 R 2.6.0 output of a linear regression between canopy evaporation (dependent variable) and precipitation (independent), the residuals were given as:
+```
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.028858 -0.009186  0.002088  0.010753  0.019997 
+```
+In the 2020 R 3.6.0 output, this line (specifically, the "Median" value) was:
+```
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.028858 -0.009186  0.002089  0.010753  0.019997 
+```
+In addition, in two cases p-values were reported with a different number of significant digits in the 2020 output: once gaining a digit ("0.005451" in 2020 versus "0.00545" in 2008) and once losing one ("0.000103" and 0.0001030" respectively). No other numerical differences occurred.
 
 ### Conclusions
 
 _In addition to the content covered below, we are interested in the insight resulting from the reproducibility experience in relation to the choice of technology, and in your opinion on the original source code (clarity, documentation, etc)._
 
-Stability of R over last 10 years; contrast with...
+As simple as the code and this reproducibility exercise was, there are some interesting notes that can be drawn from it. Reproducibility has been a core value of the R Core Team, and the base version of the software has been highly stable over the last twenty years since version 1.0. In contrast, many of the most highly used R packages, for example those of the popular [tidyverse ecosystem](https://www.tidyverse.org) has historically changed their behavior and syntax much more frequently; this allows for faster evolution and cleaner, consistent syntax (not one of base R's strong points) but poses greater challenges for stable and reproducible software.
 
-I didn't save hardware information, and only recorded the R version number in the manuscript. BUT I SAVED THE OUTPUT FROM THE SCRIPT and that made reproducibility possible!
+With regard to the very short code re-run for this report, the script contained no documentation about R or package versions, hardware information, or dates. Critically for reproducibility, its _printed output_, recorded via R's `sink()` function, was saved in an accompanying file (one with a believable, unaltered file timestamp). This allowed for a robust check on the reproducibility of the analysis, script, and underlying R software after 12 years.
 
 
 ## Software
