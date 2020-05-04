@@ -15,12 +15,7 @@ What to put inside the RR: https://github.com/ReScience/ten-years/issues/4
 
 ### Historical context
 
-_Summarize the scientific question that your code was written to explore._
-
 Significant changes in forest fires have occurred in recent decades in the global boreal (high latitude) forest, but the effects of changing climate and disturbance on evapotranspiration (ET) and forest water cycling more generally are not well understood. In a [previous study](https://dx.doi.org/10.1038/nature06272) we had explored the ecological and carbon-cycle consequences of changes in the fire regime using an ecosystem model run at high resolution across a large (1000 km x 1000 km) area of the central Canadian boreal forest. In a subsequent paper, we used the same model outputs to examine the _hydrological_ implications of these wildfire regime shifts.
-
-_Describe the computational context: Which hardware was used to run the code? Which software infrastructure? Which constraints existed on software development? Which technical choices (language, libraries, ...) were made? Were reproducibility and/or re-usability important criteria?_
-_About the original source code: Was it published? Was it archived somewhere? Was there a license for it?_
 
 The article manuscript was written in 2007-2008, initially submitted in April 2008, and a final, revised version was submitted in October of that year. The system timestamp on the script output file is 2008-03-16. The methods section of the [published paper](https://dx.doi.org/10.1111/j.1365-2486.2008.01776.x) says that R 2.6.0, which was released on 2007-10-03, was used for all analyses. The source code was not publicly archived, but retained in the lead author's personal records; it has no license. The original hardware would have been an Apple laptop (probably a 2006-2007 MacBook Pro). As noted above, the code file was archived by the lead author, and so was easy for him (but no one else) to find. The code has no comments or instructions.
 
@@ -30,12 +25,7 @@ The source code being reproduced here is short and was written to analyze relati
 
 ### Execution
 
-_Describe what you did in order to run the software today._
-
 Because the code uses only base R functions, it has no dependencies other than a standard R installation. Both in 2007-2008 and 2020, the default Mac R installer provided by CRAN was used to install R (i.e. it was not built from source). The code was re-run, without modification, on a 2018 MacBook Pro under R version 3.6.1 (2019-07-05); platform: x86_64-apple-darwin15.6.0 (64-bit); running under macOS Mojave 10.14.6.
-
-_How close were the results you got to the originally published ones? Include the_
-_replicated data table and figure, as we do in other ReScience articles._
 
 Setting aside minor spacing and text capitalization changes, only one numerical change occurred, albeit in the sixth decimal place. In the 2008 R 2.6.0 output of a linear regression between canopy evaporation (dependent variable) and precipitation (independent), the residuals were given as:
 ```
@@ -51,28 +41,12 @@ Residuals:
 ```
 In addition, in two cases p-values were reported with a different number of significant digits in the 2020 output: once gaining a digit ("0.005451" in 2020 versus "0.00545" in 2008) and once losing one ("0.000103" and 0.0001030" respectively). No other numerical differences occurred.
 
+Were these minor differences due to the different R version, or different underlying operating system and/or libraries? I downloaded R version 2.6.0 from https://cran.r-project.org, specifically https://cran.r-project.org/bin/macosx/old/R-2.6.0.dmg, and installed it on a second but very similar test machine, a TODO.
+
 ### Conclusions
 
-_In addition to the content covered below, we are interested in the insight resulting from the reproducibility experience in relation to the choice of technology, and in your opinion on the original source code (clarity, documentation, etc)._
+As simple as the code and this reproducibility exercise was, there are some interesting notes that can be drawn from it. Reproducibility has been a core value of the R Core Team, and the base version of the software has been highly stable over the last twenty years since version 1.0. Specifically for this exercise, the core of the `lm` (linear model) source code, found at https://svn.r-project.org/R/trunk/src/library/stats/R/lm.R, has changed little over the last decade.
 
-As simple as the code and this reproducibility exercise was, there are some interesting notes that can be drawn from it. Reproducibility has been a core value of the R Core Team, and the base version of the software has been highly stable over the last twenty years since version 1.0. In contrast, many of the most highly used R packages, for example those of the popular [tidyverse ecosystem](https://www.tidyverse.org) has historically changed their behavior and syntax much more frequently; this allows for faster evolution and cleaner, consistent syntax (not one of base R's strong points) but poses greater challenges for stable and reproducible software.
+In contrast, many of the most highly used R packages, for example those of the popular [tidyverse ecosystem](https://www.tidyverse.org) have historically changed their behavior and syntax much more frequently. This allows for faster evolution and cleaner, consistent syntax (not among base R's strong points) but poses greater challenges for stable and reproducible software. For example, the popular `dplyr` package lists (see https://github.com/tidyverse/dplyr/blob/master/NEWS.md) breaking changes introduced at versions 0.5, 0.7, 0.7.5, 0.8, 0.8.1, and 1.0, over a timespan of four years; code taking advantage of its powerful features and speed would be unlikely to be reproducible without being tweaked or rewritten. The highlights some of the challenges surrounding computational reproducibility ([Thornton et al. 2005](http://dx.doi.org/10.1029/2005EO440003)).
 
-With regard to the very short code re-run for this report, the script contained no documentation about R or package versions, hardware information, or dates. Critically for reproducibility, its _printed output_, recorded via R's `sink()` function, was saved in an accompanying file (one with a believable, unaltered file timestamp). This allowed for a robust check on the reproducibility of the analysis, script, and underlying R software after 12 years.
-
-
-## Software
-
-If the licenses applying to the original software allow, please make your old software
-available as a repository on GitHub or an equivalent site. In the best case scenario, in
-which the old code is publishable, here is the procedure:
-
-1. Add your old software as a single commit (ideally the initial one) of a new source
-   repository.
-2. Edit the code as necessary to reproduce the results in today's computational environment,
-   committing the changes in logical units in the process. Include the additional tools
-   (scripts, makefiles, ...) that you wrote for re-running your software and the additional
-   instructions.
-3. Make sure your repository contains a license.
-4. Finaly, submit your repository to [Software Heritage](http://save.softwareheritage.org/)
-   for archiving.
-  
+With regard to the very short code re-run for this report, the script contained no documentation about R or package versions, hardware information, or dates. These are all obvious shortcomings. Critically for reproducibility, however, its _printed output_, recorded via R's `sink()` function, was saved in an accompanying file (one with an unaltered file timestamp). This allowed for a robust check on the reproducibility of the analysis, script, and underlying R software after 12 years.
