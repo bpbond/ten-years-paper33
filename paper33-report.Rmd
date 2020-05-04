@@ -1,8 +1,10 @@
 ---
-title: "Paper 33 Reproducibility Report: 12 Years Later..."
-output: html_document
-author: Ben Bond-Lamberty
+title: "Paper 33 Reproducibility Report"
+author: "Ben Bond-Lamberty"
 date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -47,6 +49,6 @@ Were these minor differences due to the different R version, or different underl
 
 As simple as the code and this reproducibility exercise was, there are some interesting notes that can be drawn from it. Reproducibility has been a core value of the R Core Team, and the base version of the software has been highly stable over the last twenty years since version 1.0. Specifically for this exercise, the core of the `lm` (linear model) source code, found at https://svn.r-project.org/R/trunk/src/library/stats/R/lm.R, has changed little over the last decade.
 
-In contrast, many of the most highly used R packages, for example those of the popular [tidyverse ecosystem](https://www.tidyverse.org) have historically changed their behavior and syntax much more frequently. This allows for faster evolution and cleaner, consistent syntax (not among base R's strong points) but poses greater challenges for stable and reproducible software. For example, the popular `dplyr` package lists (see https://github.com/tidyverse/dplyr/blob/master/NEWS.md) breaking changes introduced at versions 0.5, 0.7, 0.7.5, 0.8, 0.8.1, and 1.0, over a timespan of four years; code taking advantage of its powerful features and speed would be unlikely to be reproducible without being tweaked or rewritten. The highlights some of the challenges surrounding computational reproducibility ([Thornton et al. 2005](http://dx.doi.org/10.1029/2005EO440003)).
+In contrast, many of the most highly used R packages, for example those of the popular [tidyverse ecosystem](https://www.tidyverse.org) have historically changed their behavior and syntax much more frequently. This allows for faster evolution and cleaner, consistent syntax (not among base R's strong points) but poses greater challenges for stable and reproducible software. For example, the popular `dplyr` package lists (see https://github.com/tidyverse/dplyr/blob/master/NEWS.md) breaking changes introduced at versions 0.5, 0.7, 0.7.5, 0.8, 0.8.1, and 1.0, over a timespan of four years; code taking advantage of its powerful features and speed would be unlikely to be reproducible without being tweaked or rewritten. This highlights some of the challenges surrounding computational reproducibility ([Thornton et al. 2005](http://dx.doi.org/10.1029/2005EO440003)).
 
-With regard to the very short code re-run for this report, the script contained no documentation about R or package versions, hardware information, or dates. These are all obvious shortcomings. Critically for reproducibility, however, its _printed output_, recorded via R's `sink()` function, was saved in an accompanying file (one with an unaltered file timestamp). This allowed for a robust check on the reproducibility of the analysis, script, and underlying R software after 12 years.
+With regard to the very short length of code that was needed to be re-run for this report, the script contained no documentation about R or package versions, hardware information, or dates. These are all obvious shortcomings. Critically for reproducibility, however, its _printed output_, recorded via R's `sink()` function, was saved in an accompanying file (one with an unaltered file timestamp). This allowed for a robust check on the reproducibility of the analysis, script, and underlying R software after 12 years.

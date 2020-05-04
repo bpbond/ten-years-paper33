@@ -37,3 +37,8 @@ vignettes/*.pdf
 
 # R markdown outputs
 #*.html
+
+# Other
+*.tex
+*.log
+*.html
