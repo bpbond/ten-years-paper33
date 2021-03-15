@@ -1,0 +1,46 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "@type": "SoftwareSourceCode",
+    "license": "https://spdx.org/licenses/MIT",
+    "codeRepository": "https://github.com/bpbond/ten-years-paper33",
+    "dateCreated": "2020-05-04",
+    "datePublished": "2021-03-15",
+    "dateModified": "2021-03-15",
+    "downloadUrl": "https://github.com/bpbond/ten-years-paper33/archive/master.zip",
+    "issueTracker": "https://github.com/bpbond/ten-years-paper33/issues",
+    "name": "Ten Years Reproducibility Challenge 33",
+    "description": "This code supports a submission to the Ten Years Reproducibility Challenge (https://github.com/ReScience/ten-years). The R Markdown file (`paper33-report.Rmd`) describes what was actually done. The `original/` folder  holds the original code from 2009.\n",
+    "applicationCategory": "Environmental sciences",
+    "isPartOf": "https://github.com/ReScience/ten-years",
+    "funder": {
+        "@type": "Organization",
+        "name": "DOE Terrestrial Ecosystem Science"
+    },
+    "keywords": [
+        "wildfire",
+        "reproducibility",
+        "evapotranspiration"
+    ],
+    "programmingLanguage": [
+        "R"
+    ],
+    "operatingSystem": [
+        "macOS"
+    ],
+    "relatedLink": [
+        "https://github.com/ReScience/submissions/issues/40"
+    ],
+    "author": [
+        {
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0001-9525-4633",
+            "givenName": "Ben",
+            "familyName": "Bond-Lamberty",
+            "email": "bondlamberty@pnnl.gov",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Pacific Northwest National Laboratory"
+            }
+        }
+    ]
+}
